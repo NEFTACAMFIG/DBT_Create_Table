@@ -1,5 +1,3 @@
-# DBT_Create_Table
-
 # Incremental Model for Animal Data Management in DBT
 
 ## Overview
