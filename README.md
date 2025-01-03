@@ -43,4 +43,52 @@ The model uses Common Table Expressions (CTEs) to preprocess data from each sour
 - Include automated testing for data quality.
 - Expand data sources to include more operational metrics.
 
+# Wildlife Analytics SQL Query
 
+## Overview
+This query processes and analyzes wildlife monitoring data from various habitats. It identifies trends in species behavior, habitat usage, and logistical activities. The script is designed to aggregate event details, calculate key metrics, and highlight the top species, suppliers, observation stations, and logistics partners.
+
+## Key Features
+- **Data Aggregation**: Combines data from multiple sources, including event logs, habitats, and supplier information.
+- **Dynamic Metrics Calculation**: Calculates event counts and food consumption for species across regions.
+- **Filtering**: Focuses on specific regions, species, and event categories for precise analysis.
+- **Top Entities**: Highlights the top 10 species, suppliers, observation stations, and logistics partners based on event frequencies.
+- **Flexible Timeframe**: Uses a 6-month lookback period for analysis.
+
+## Query Breakdown
+
+### 1. **animal_event_count**
+Calculates the total number of events for each habitat by counting specific event types (e.g., "Migration", "Nesting", "Feeding").
+
+### 2. **animal_event_details**
+Enriches the event data by:
+- Adding dimensional attributes like region, species type, and observation station.
+- Cleaning and standardizing event descriptions.
+- Calculating key metrics, such as total event count and food consumption.
+
+### 3. **top_species**
+Identifies the top 10 animal categories based on the frequency of key events (e.g., "Feeding", "Nesting", "Migration").
+
+### 4. **top_suppliers**
+Lists the top 10 suppliers providing resources (e.g., food) based on event data.
+
+### 5. **top_observation_stations**
+Ranks the top 10 observation stations where significant wildlife activity has been recorded.
+
+### 6. **top_logistics_partners**
+Highlights the top 10 logistics partners involved in habitat management or event facilitation.
+
+### 7. **Final Query**
+Filters the enriched data for:
+- Events recorded in the last 6 months.
+- Specific region: North America.
+- Species type: Mammals.
+- Event category: Migration ("MG").
+- Supplier: Nature Supply Co.
+- Top 10 species based on event data.
+
+## Key Parameters
+- **Lookback Period**: The query filters data from the last 6 months (`DATE_SUB(CURRENT_DATE(), INTERVAL 6 MONTH)`).
+- **Regions**: Focused on North America.
+- **Species Type**: Mammals.
+- **Event Description**: Events classified as "Feeding".
